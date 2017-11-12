@@ -5,6 +5,7 @@ library(ggplot2)
 
 # x축 displ, y축 hwy로 지정해 배경 생성
 ggplot(data = mpg, aes(x = displ, y = hwy))
+mpg %>% ggplot(aes(x = displ, y = hwy))
 
 # 배경에 산점도 추가
 ggplot(data = mpg, aes(x = displ, y = hwy)) + geom_point()
