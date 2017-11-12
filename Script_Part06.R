@@ -5,6 +5,14 @@ library(dplyr)
 exam <- read.csv("csv_exam.csv")
 exam
 
+?tbl_df
+?glimpse
+# %>% 변수명 자동 완성이 되는 장점도 있음
+
+exam %>% head
+
+?dplyr::filter
+
 # exam에서 class가 1인 경우만 추출하여 출력
 exam %>% filter(class == 1)  
 
@@ -72,10 +80,11 @@ exam %>% select(class, math, english)  # class, math, english 변수 추출
 exam %>% select(-math)                 # math 제외
 exam %>% select(-math, -english)       # math, english 제외
 
-
 ## -------------------------------------------------------------------- ##
 # class가 1인 행만 추출한 다음 english 추출
 exam %>% filter(class == 1) %>% select(english)
+
+exam %>% select(english) %>% filter(class == 1) # not possible
 
 exam %>%
   filter(class == 1) %>%  # class가 1인 행 추출
@@ -95,8 +104,8 @@ exam %>%
 ## -------------------------------------------------------------------- ##
 exam %>% arrange(math)         # math 오름차순 정렬
 exam %>% arrange(desc(math))   # math 내림차순 정렬
+exam %>% arrange(-math) # 숫자 데이터만 가능
 exam %>% arrange(class, math)  # class 및 math 오름차순 정렬
-
 
 #### 06-5 ####
 
@@ -124,6 +133,12 @@ exam %>%
 
 ## -------------------------------------------------------------------- ##
 exam %>% summarise(mean_math = mean(math))  # math 평균 산출
+
+exam
+groups <- exam %>% 
+  group_by(class)
+?group_by
+summarise(groups, mean_math = mean(math))
 
 exam %>% 
   group_by(class) %>%                   # class별로 분리
@@ -169,15 +184,13 @@ test2  # test2 출력
 total <- left_join(test1, test2, by = "id")  # id 기준으로 합쳐서 total에 할당
 total                                        # total 출력
 
-
-## -------------------------------------------------------------------- ##
+## -------------------------------------------------------------------- #
 name <- data.frame(class = c(1, 2, 3, 4, 5),
                    teacher = c("kim", "lee", "park", "choi", "jung"))
 name
 
 exam_new <- left_join(exam, name, by = "class")
 exam_new
-
 
 ## -------------------------------------------------------------------- ##
 # 학생 1~5번 시험 데이터 생성

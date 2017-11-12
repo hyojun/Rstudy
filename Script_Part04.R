@@ -8,7 +8,8 @@ english
 math <- c(50, 60, 100, 20)    # 수학 점수 변수 생성
 math
 
-science <- c(1, 2, 3, 4)
+science <- c(1, 2, 3)
+data.frame(english, science) # error
 
 # english, math로 데이터 프레임 생성해서 df_midterm에 할당
 df_midterm <- data.frame(english, math)
@@ -24,6 +25,7 @@ mean(df_midterm$english)  # df_midterm의 english로 평균 산출
 mean(df_midterm$math)     # df_midterm의 math로 평균 산술
 
 english <- (1, 2, 3, 4)
+df_midterm$english # remain unchanged
 
 df_midterm <- data.frame(english = c(90, 80, 60, 70),
                          math = c(50, 60, 100, 20),
@@ -37,8 +39,7 @@ df_midterm
 install.packages("readxl")
 library(readxl)
 
-dd_exam <- read_excel(file.choose())
-read.csv(file.choose())
+dd_exam <- read_excel(file.choose()) # select file with OS interface
 
 df_exam <- read_excel("excel_exam.xlsx")  # 엑셀 파일을 불러와서 df_exam에 할당
 df_exam                                   # 출력

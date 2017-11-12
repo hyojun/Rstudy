@@ -29,6 +29,7 @@ summary(mpg)  # 요약 통계량 출력
 
 #### 05-2 ####
 
+install.packages("tidyverse") # useful package
 ## -------------------------------------------------------------------- ##
 df_raw <- data.frame(var1 = c(1, 2, 1),
                      var2 = c(2, 3, 2))
